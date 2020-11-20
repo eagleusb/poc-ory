@@ -20,14 +20,14 @@ OAuth 2.0 extensions can also define new grant types.
 
 > grant types
 
-| type               | needed                                  | return       | deprecated |
-|--------------------|-----------------------------------------|--------------|------------|
-| client credentials | user/password - client_id/client_secret | access token |            |
-| authorization code |                                         |              |            |
-| device code        |                                         |              |            |
-| refresh            | refresh token                           | access token |            |
-| implicit           |                                         | access token | **x**      |
-| password           | user/password                           | access token | **x**      |
+| type               | needed                  | return       | deprecated |
+|--------------------|-------------------------|--------------|------------|
+| client credentials | client_id/client_secret | access token |            |
+| authorization code | client_id/client_secret | access code  |            |
+| device code        | client_id - device_code | access token |            |
+| refresh            | refresh token           | access token |            |
+| implicit           | client_id               | access token | **x**      |
+| password           | user/password           | access token | **x**      |
 
 > grant type decision tree
 
@@ -35,18 +35,20 @@ OAuth 2.0 extensions can also define new grant types.
 
 ### Terminology
 
-- `access token` : the bearer token returned by the authorization server
-- `authorization server` : server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization
-- `client_id` : public identifier of the application obtained during registration
-- `client_secret` : secret of the application obtained during registration
-- `client` : an application making protected resource requests on behalf of the resource owner and with its authorization
-- `confidential clients` : clients which have the ability to maintain the confidentiality of the client_secret
-- `grant_type` : define which OAuth2 grant type is used
-- `public clients` : public clients cannot maintain the confidentiality of a client_secret, so the secret is not used for these apps. Both mobile apps and Javascript apps are considered public clients
-- `refresh token` : the next bearer token when current one is outdated
-- `resource owner` : mainly the user able to authenticate
-- `resource server` : server hosting the protected resources (protected by access tokens)
-- `scope` : name of the token's scope
+| term                 | definition                                                                                                   |
+|----------------------|--------------------------------------------------------------------------------------------------------------|
+| access token         | the bearer token returned by the authorization server                                                        |
+| authorization server | server issuing access tokens to the client after successfully authorization                                  |
+| client_id            | public identifier of the application obtained during registration                                            |
+| client_secret        | secret of the application obtained during registration                                                       |
+| client               | an application making protected resource requests on behalf of the resource owner and with its authorization |
+| confidential clients | clients which have the ability to maintain the confidentiality of the client_secret                          |
+| grant_type           | define which OAuth2 grant type is used                                                                       |
+| public clients       | public clients cannot maintain the confidentiality of a client_secret                                        |
+| refresh token        | the next bearer token when current one is outdated                                                           |
+| resource owner       | mainly the user able to authenticate                                                                         |
+| resource server      | server hosting the protected resources (protected by access tokens)                                          |
+| scope                | name of the token's scope                                                                                    |
 
 ## Links
 
